@@ -1,0 +1,45 @@
+digraph G {
+  rankdir=TB;
+  node [shape=box, style=filled, color=lightblue];
+
+  // Nodes
+  User [shape=ellipse, color=gold];
+  ProductListScreen [label="Product List\n(View)"];
+  ProductDetailScreen [label="Product Detail\n(View)"];
+  ProductListViewModel [label="List ViewModel"];
+  ProductDetailViewModel [label="Detail ViewModel"];
+
+  // Nodes for Service and Model
+  ProductService [label="Service\n(API)"];
+  ProductModel [label="Product Model"];
+
+    User -> ProductListScreen [label="Opens App"];
+    User -> ProductDetailScreen [label="Selects Product"];
+    ProductListViewModel -> ProductService [label="Get Products"];
+    ProductService -> ProductListViewModel [label="Returns List"];
+    ProductListViewModel -> ProductModel [label="Updates Model"];
+    ProductModel -> ProductListViewModel [label="Updates ViewModel"];
+    ProductDetailViewModel -> ProductService [label="Get Details"];
+    ProductService -> ProductDetailViewModel [label="Returns Details"];
+    ProductDetailViewModel -> ProductModel [label="Updates Model"];
+    ProductModel -> ProductDetailViewModel [label="Updates ViewModel"];
+  // Subgraph for Product List workflow
+
+  // Subgraph for Product Detail workflow
+  subgraph cluster_ProductDetail {
+    label="Product Detail Workflow";
+    color=green;
+
+    // Edges
+    ProductDetailScreen -> ProductDetailViewModel [label="Interacts"];
+    ProductDetailViewModel -> ProductDetailScreen [label="Updates View"];
+  }
+  subgraph cluster_ProductList {
+    label="Product List Workflow";
+    color=blue;
+
+    // Edges
+    ProductListScreen -> ProductListViewModel [label="Interacts"];
+    ProductListViewModel -> ProductListScreen [label="Updates View"];
+  }
+}

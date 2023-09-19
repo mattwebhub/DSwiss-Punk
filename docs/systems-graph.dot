@@ -1,0 +1,32 @@
+digraph G {
+  rankdir=TB;
+  node [shape=box, style=filled, color=lightblue];
+  
+  subgraph cluster_0 {
+    label="App";
+    Models [label="Models\n(Data & Business Logic)"];
+    Views [label="Views\n(User Interface)"];
+    ViewModels [label="ViewModels\n(Interface between Model and View)"];
+    Services [label="Services\n(External Interactions)"];
+    Helpers [label="Helpers\n(Common Functionality)"];
+  }
+
+  subgraph cluster_1 {
+    label="Resources";
+    Images [label="Images"];
+    Styles [label="Styles"];
+  }
+
+  subgraph cluster_2 {
+    label="Tests";
+    UnitTests [label="Unit Tests"];
+    UITests [label="UI Tests"];
+  }
+
+  Views -> ViewModels [label="User Interactions"];
+  ViewModels -> Models [label="Update Model"];
+  Models -> ViewModels [label="Update ViewModel"];
+  ViewModels -> Views [label="Update View"];
+  ViewModels -> Services [label="External Operations"];
+  Services -> ViewModels [label="Handle Errors"];
+}
