@@ -4,11 +4,14 @@
 
 This is a .NET cross-platform application made with the latest MS technologies for creating Mobile applications. MAUI utilizes the core Xamarin architectural design and is being set as a continuation for Xamarin.
 
-This system follows the Model-View-ViewModel (MVVM) 
+This system follows the Model-View-ViewModel-Services (MVVMS) 
 
 User -> View -> ViewModel -> Model -> ViewModel -> View -> User
 
-This architecture adheres to community best practices. The application consists of two screens: a product list screen and a product detail screen.
+This is a widely used architecture for building applications.
+
+The application consists of two screens: a screen where products from an API are fetched and displayed.
+And a product detail screen where a given selected product is showcased with it's details.
 
 ## Directory Structure
 
@@ -74,3 +77,7 @@ This application is a cross-platform application that is set to run in Android, 
 
 - **macOS**: To run the application on macOS, ensure you have the necessary provisioning profiles set up in your Apple Developer account.
 
+Roadmap:
+
+- Setup Application and Test projects - OK
+- Setup Initial MVVMS Architecture - OK

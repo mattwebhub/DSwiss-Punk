@@ -1,42 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:DSwiss_Punk.Core.ViewModels"
+             xmlns:model="clr-namespace:DSwiss_Punk.Core.Models"
+             x:DataType="viewModels:ProductListViewModel"
              x:Class="DSwiss_Punk.MainPage">
-
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
-
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
-
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
-
-        </VerticalStackLayout>
-    </ScrollView>
-
+    
+    <Grid
+        ColumnDefinitions="*,*"
+        ColumnSpacing="5"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+        
+        <CollectionView
+            Grid.ColumnSpan="2"
+            ItemsSource="{Binding Products}"
+            SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Product">
+                    <Grid Padding="10">
+                        <Frame HeightRequest="125">
+                            <Grid Padding="0" ColumnDefinitions="125,*">
+                                <!-- <Image Aspect="AspectFill" Source="{Binding Image}" -->
+                                <!--        WidthRequest="125" -->
+                                <!--        HeightRequest="125"/> -->
+                                <VerticalStackLayout
+                                    VerticalOptions="Center"
+                                    Grid.Column="1"
+                                    Padding="10">
+                                    <Label Text="{Binding Name}" />
+                                    <Label Text="{Binding .Description}" />
+                                </VerticalStackLayout>
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+        <Button Text="Get Products"
+                Command="{Binding LoadProductsCommand}"
+                Grid.Row="1"
+                Grid.Column="0"
+                Margin="8" />
+    </Grid>
 </ContentPage>
-

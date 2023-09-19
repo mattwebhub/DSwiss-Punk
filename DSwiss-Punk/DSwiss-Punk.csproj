@@ -1,11 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst;net7.0;</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
-		<OutputType>Exe</OutputType>
+		<OutputType Condition="'$(TargetFramework)' == 'net7.0-android'">Exe</OutputType>
+		<OutputType Condition="'$(TargetFramework)' == 'net7.0-ios'">Exe</OutputType>
+		<OutputType Condition="'$(TargetFramework)' == 'net7.0-maccatalyst'">Exe</OutputType>
+		<OutputType Condition="'$(TargetFramework)' == 'net7.0'">Library</OutputType>
 		<RootNamespace>DSwiss_Punk</RootNamespace>
 		<UseMaui>true</UseMaui>
 		<SingleProject>true</SingleProject>
@@ -52,7 +55,34 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.3.0" />
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Core\Helpers\" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Remove="App\ViewModels\ListViewModel.cs" />
+	  <Compile Remove="Core\ViewModels\ListViewModel.cs" />
+	  <Compile Remove="Core\Views\ProductListView.cs" />
+	  <Compile Update="MainPage.xaml.cs">
+	    <DependentUpon>MainPage.xaml</DependentUpon>
+	    <SubType>Code</SubType>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Remove="Core\Views\MainPage.xaml" />
+	</ItemGroup>
+
+
+
+
+	<ItemGroup>
+	  <Content Include="MainPage.xaml" />
 	</ItemGroup>
 
 </Project>
