@@ -3,12 +3,12 @@
     x:Class="DSwiss_Punk.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:DSwiss_Punk"
+    xmlns:views="clr-namespace:DSwiss_Punk.Core.Views"
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        Title="Product List"
+        ContentTemplate="{DataTemplate views:ProductList}"
         Route="MainPage" />
 
 </Shell>

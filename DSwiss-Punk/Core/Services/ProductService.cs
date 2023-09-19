@@ -10,7 +10,7 @@ namespace DSwiss_Punk.Core.Services
         public async Task<List<Product>> GetProductsAsync()
         {
             // [CONSTR] Placeholder for ProductService
-            await Task.Delay(1000); // Simulate a delay
+            await Task.Delay(3000); // Simulate a delay
             Debug.Print("Getting products");
             return new List<Product>
             {

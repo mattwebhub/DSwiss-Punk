@@ -68,21 +68,6 @@
 	  <Compile Remove="App\ViewModels\ListViewModel.cs" />
 	  <Compile Remove="Core\ViewModels\ListViewModel.cs" />
 	  <Compile Remove="Core\Views\ProductListView.cs" />
-	  <Compile Update="MainPage.xaml.cs">
-	    <DependentUpon>MainPage.xaml</DependentUpon>
-	    <SubType>Code</SubType>
-	  </Compile>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <MauiXaml Remove="Core\Views\MainPage.xaml" />
-	</ItemGroup>
-
-
-
-
-	<ItemGroup>
-	  <Content Include="MainPage.xaml" />
 	</ItemGroup>
 
 </Project>

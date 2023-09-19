@@ -1,17 +1,18 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:DSwiss_Punk.Core.ViewModels"
              xmlns:model="clr-namespace:DSwiss_Punk.Core.Models"
-             x:DataType="viewModels:ProductListViewModel"
-             x:Class="DSwiss_Punk.MainPage">
-    
+             x:Class="DSwiss_Punk.Core.Views.ProductList"
+             x:DataType="viewModels:ProductListViewModel">
+
     <Grid
         ColumnDefinitions="*,*"
         ColumnSpacing="5"
         RowDefinitions="*,Auto"
         RowSpacing="0">
-        
+
         <CollectionView
             Grid.ColumnSpan="2"
             ItemsSource="{Binding Products}"
@@ -20,16 +21,22 @@
                 <DataTemplate x:DataType="model:Product">
                     <Grid Padding="10">
                         <Frame HeightRequest="125">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer
+                                    Command="{Binding Source={RelativeSource AncestorType={x:Type viewModels:ProductListViewModel}}, Path=GoToDetailsCommand}"
+                                    CommandParameter="{Binding .}" />
+                            </Frame.GestureRecognizers>
+
                             <Grid Padding="0" ColumnDefinitions="125,*">
-                                <!-- <Image Aspect="AspectFill" Source="{Binding Image}" -->
-                                <!--        WidthRequest="125" -->
-                                <!--        HeightRequest="125"/> -->
+                                <!-- <Image Aspect="AspectFill" Source="{Binding Image}"  -->
+                                <!--        WidthRequest="125"  -->
+                                <!--        HeightRequest="125"/>  -->
                                 <VerticalStackLayout
                                     VerticalOptions="Center"
                                     Grid.Column="1"
                                     Padding="10">
                                     <Label Text="{Binding Name}" />
-                                    <Label Text="{Binding .Description}" />
+                                    <Label Text="{Binding Description}" />
                                 </VerticalStackLayout>
                             </Grid>
                         </Frame>
@@ -42,5 +49,15 @@
                 Grid.Row="1"
                 Grid.Column="0"
                 Margin="8" />
+
+
+        <!-- <ActivityIndicator IsVisible="{Binding IsBusy}" -->
+        <!--                    IsRunning="{Binding IsBusy}" -->
+        <!--                    HorizontalOptions="Fill" -->
+        <!--                    VerticalOptions="Center" -->
+        <!--                    Color="{StaticResource Primary}" -->
+        <!--                    Grid.RowSpan="2" -->
+        <!--                    Grid.ColumnSpan="2"/> -->
+
     </Grid>
 </ContentPage>
