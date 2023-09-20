@@ -4,13 +4,15 @@ using DSwiss_Punk.Core.Models;
 using DSwiss_Punk.Core.Services;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Text.Json;
 using DSwiss_Punk.Core.Views;
+
 namespace DSwiss_Punk.Core.ViewModels
 {
     public class ProductListViewModel : BaseViewModel
     {
         private readonly ProductService _productService;
-        private Product _selectedProduct;
+        public Product Product;
 
         public IAsyncRelayCommand LoadProductsCommand { get; }
         public IAsyncRelayCommand<Product> GoToDetailsCommand { get; }
@@ -24,13 +26,7 @@ namespace DSwiss_Punk.Core.ViewModels
 
 
         public ObservableCollection<Product> Products { get; } = new();
-
-        // [CONSTR]
-        public Product SelectedProduct
-        {
-            get => _selectedProduct;
-            set => SetProperty(ref _selectedProduct, value);
-        }
+        
 
         private async Task LoadProductsAsync()
         {
@@ -41,15 +37,18 @@ namespace DSwiss_Punk.Core.ViewModels
                 Products.Add(product);
             }
         }
+
         private async Task GoToDetailsAsync(Product product)
         {
-            
-            Debug.Print("Going to Details!", product);
+            if (product == null)
+            {
+                return;
+            }
             
             await Shell.Current.GoToAsync(nameof(ProductDetails), true, new Dictionary<string, object>
-        {
-            {"Product", product }
-        });
+            {
+                { "Product", product }
+            });
         }
     }
 }
