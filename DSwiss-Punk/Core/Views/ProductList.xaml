@@ -9,7 +9,7 @@
 
     <Grid
         ColumnDefinitions="*,*"
-        ColumnSpacing="5"
+        
         RowDefinitions="*,Auto"
         RowSpacing="0">
 
@@ -32,8 +32,7 @@
                             <Grid Padding="0" ColumnDefinitions="125,*">
                                 <Image Aspect="AspectFit" Source="{Binding Image_Url}"
                                        WidthRequest="125"
-                                       HeightRequest="100"
-                                       />
+                                       HeightRequest="100" />
                                 <VerticalStackLayout
                                     VerticalOptions="Center"
                                     Grid.Column="1"
@@ -47,14 +46,22 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-
-        <ActivityIndicator IsVisible="{Binding IsBusy}"
-                           IsRunning="{Binding IsBusy}"
-                           HorizontalOptions="Fill"
-                           VerticalOptions="Center"
-                           Color="{StaticResource Secondary}"
-                           Grid.RowSpan="2"
-                           Grid.ColumnSpan="2"/>
+            
+        <!-- Loading indicator -->
+        <Grid IsVisible="{Binding IsBusy}"
+              BackgroundColor="Black"
+              Grid.ColumnSpan="2"
+              Opacity="0.8"
+              VerticalOptions="Start"
+              HorizontalOptions="FillAndExpand"
+              HeightRequest="40">
+            <ActivityIndicator IsRunning="{Binding IsBusy}"
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               Color="White" />
+        </Grid>
+    
 
     </Grid>
+    
 </ContentPage>
