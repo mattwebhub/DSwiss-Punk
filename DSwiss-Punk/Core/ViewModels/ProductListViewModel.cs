@@ -16,8 +16,8 @@ namespace DSwiss_Punk.Core.ViewModels
         public IAsyncRelayCommand LoadProductsCommand { get; }
         public IAsyncRelayCommand<Product> GoToDetailsCommand { get; }
         public IAsyncRelayCommand LoadMoreProductsCommand { get; }
-        public int CurrentPage { get; set; } = 1;
-        public int PageSize { get; set; } = 10;
+        private int CurrentPage { get; set; } = 1;
+        private static int PageSize => 10;
 
         public ProductListViewModel(ProductService productService)
         {
@@ -50,6 +50,7 @@ namespace DSwiss_Punk.Core.ViewModels
                 IsBusy = false;
             }
         }
+
         private async Task LoadMoreProductsAsync()
         {
             if (IsBusy) return;

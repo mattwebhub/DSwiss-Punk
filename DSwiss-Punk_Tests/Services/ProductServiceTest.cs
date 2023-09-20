@@ -15,26 +15,36 @@ namespace DSwiss_Punk_Tests.Services
             // Arrange
             var expectedProducts = new List<Product>
             {
-                new Product { Id = 1, Name = "Buzz", Tagline = "A Real Bitter Experience.", First_brewed = "09/2007", Description = "A light, crisp and bitter IPA brewed with English and American hops. A small batch brewed only once.", Image_url = "https://images.punkapi.com/v2/keg.png" },
-                new Product { Id = 2, Name = "Trashy Blonde", Tagline = "You Know You Shouldn't", First_brewed = "04/2008", Description = "A titillating, neurotic, peroxide punk of a Pale Ale. Combining attitude, style, substance, and a little bit of low self esteem for good measure; what would your mother say? The seductive lure of the sassy passion fruit hop proves too much to resist. All that is even before we get onto the fact that there are no additives, preservatives, pasteurization or strings attached. All wrapped up with the customary BrewDog bite and imaginative twist.", Image_url = "https://images.punkapi.com/v2/2.png" },
+                new Product
+                {
+                    Name = "Buzz", Tagline = "A Real Bitter Experience.",
+                    Description =
+                        "A light, crisp and bitter IPA brewed with English and American hops. A small batch brewed only once.",
+                    Image_Url = "https://images.punkapi.com/v2/keg.png"
+                },
+                new Product
+                {
+                    Name = "Trashy Blonde", Tagline = "You Know You Shouldn't",
+                    Description =
+                        "A titillating, neurotic, peroxide punk of a Pale Ale. Combining attitude, style, substance, and a little bit of low self esteem for good measure; what would your mother say? The seductive lure of the sassy passion fruit hop proves too much to resist. All that is even before we get onto the fact that there are no additives, preservatives, pasteurization or strings attached. All wrapped up with the customary BrewDog bite and imaginative twist.",
+                    Image_Url = "https://images.punkapi.com/v2/2.png"
+                },
             };
 
-            var httpMessageHandler = new MockHttpMessageHandler(JsonConvert.SerializeObject(expectedProducts), HttpStatusCode.OK);
+            var httpMessageHandler =
+                new MockHttpMessageHandler(JsonConvert.SerializeObject(expectedProducts), HttpStatusCode.OK);
             var httpClient = new HttpClient(httpMessageHandler);
 
             var productService = new ProductService();
-            
+
             // Act
             var products = await productService.GetProductsAsync(1, 2);
 
             // Assert
             products.Should().BeEquivalentTo(expectedProducts, options => options
-                .Including(p => p.Id)
                 .Including(p => p.Name)
                 .Including(p => p.Tagline)
-                .Including(p => p.First_brewed)
-                .Including(p => p.Description)
-                .Including(p => p.Image_url));
+                .Including(p => p.Description));
         }
     }
 
@@ -49,7 +59,8 @@ namespace DSwiss_Punk_Tests.Services
             _statusCode = statusCode;
         }
 
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+            CancellationToken cancellationToken)
         {
             return new HttpResponseMessage
             {

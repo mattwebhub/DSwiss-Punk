@@ -29,8 +29,6 @@ namespace DSwiss_Punk.Core.Services
                 _productList = await response.Content.ReadFromJsonAsync<List<Product>>();
             }
 
-            Debug.WriteLine(_productList);
-
             return _productList;
         }
     }

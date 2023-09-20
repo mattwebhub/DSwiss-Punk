@@ -8,20 +8,18 @@
              Title="Product Details">
     <VerticalStackLayout>
         <ScrollView>
-            <Grid RowDefinitions="Auto,Auto,*">
-                <Image Aspect="AspectFill"
+            <Grid RowDefinitions="Auto,Auto,*" Padding="10">
+                <Image Aspect="AspectFit"
                        HeightRequest="160"
                        HorizontalOptions="Center"
                        VerticalOptions="Center"
-                       Source="{Binding Product.Image_url}"
+                       Source="{Binding Product.Image_Url}"
                        WidthRequest="160" />
                 <VerticalStackLayout Grid.Row="2" Padding="10" Spacing="10">
                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Product.Name}" />
                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Product.Tagline}" />
                     <Label Style="{StaticResource SmallLabel}" Text="{Binding Product.Description}" />
                 </VerticalStackLayout>
-
-
             </Grid>
         </ScrollView>
     </VerticalStackLayout>

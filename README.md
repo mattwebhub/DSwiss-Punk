@@ -1,6 +1,6 @@
 # DSwiss Punk APP
 
-This is a simple client application for the Punk API. It fetches and displays a list of beers from the API.
+This is a simple client cross-platform application (Android, iOS and MacOS). It fetches and displays a list of beers from the Punk API.
 
 ## Features
 
@@ -22,7 +22,13 @@ Unit tests are available in the `DSwiss_Punk_Tests` project. You can run them us
 
 - .NET MAUI
 - CommunityToolkit.Maui
-- Newtonsoft.Json
+- CommunityToolkit.MVVM
+- Xamarin
+
+Tests:
+- XUnit
+- FluentAssertions
+- NSubstitute
 
 ## Documentation
 
