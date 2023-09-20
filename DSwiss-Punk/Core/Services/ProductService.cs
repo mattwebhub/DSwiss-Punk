@@ -6,15 +6,13 @@ namespace DSwiss_Punk.Core.Services
 {
     public class ProductService
     {
-        private HttpClient _httpClient;
+        private readonly HttpClient _httpClient;
         private List<Product> _productList;
         private const string ApiUrl = "https://api.punkapi.com/v2/beers?";
 
-        public ProductService()
+        public ProductService(HttpClient httpClient)
         {
-            // Note: We would want to modify this to accept this instance on the constructor, so that it can be more testable
-            // For time constraints we will leave it as is.
-            this._httpClient = new HttpClient();
+            _httpClient = httpClient;
         }
 
         public async Task<List<Product>> GetProductsAsync(int pageNumber, int pageSize)

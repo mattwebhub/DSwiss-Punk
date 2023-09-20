@@ -20,15 +20,16 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
+		builder.Services.AddSingleton<HttpClient>();
 		builder.Services.AddSingleton<ProductService>();
 		builder.Services.AddSingleton<ProductListViewModel>();
 		builder.Services.AddSingleton<ProductList>();
 
-        builder.Services.AddTransient<ProductDetailsViewModel>();
-        builder.Services.AddTransient<ProductDetails>();
+		builder.Services.AddTransient<ProductDetailsViewModel>();
+		builder.Services.AddTransient<ProductDetails>();
 
 #if DEBUG
-        builder.Logging.AddDebug();
+		builder.Logging.AddDebug();
 #endif
 
 		return builder.Build();

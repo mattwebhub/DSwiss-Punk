@@ -35,7 +35,7 @@ namespace DSwiss_Punk_Tests.Services
                 new MockHttpMessageHandler(JsonConvert.SerializeObject(expectedProducts), HttpStatusCode.OK);
             var httpClient = new HttpClient(httpMessageHandler);
 
-            var productService = new ProductService();
+            var productService = new ProductService(httpClient);
 
             // Act
             var products = await productService.GetProductsAsync(1, 2);

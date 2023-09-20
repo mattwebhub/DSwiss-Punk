@@ -1,4 +1,3 @@
-using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using DSwiss_Punk.Core.Models;
 using DSwiss_Punk.Core.Services;
@@ -11,7 +10,6 @@ namespace DSwiss_Punk.Core.ViewModels
     public class ProductListViewModel : BaseViewModel
     {
         private readonly ProductService _productService;
-        public Product Product;
 
         public IAsyncRelayCommand LoadProductsCommand { get; }
         public IAsyncRelayCommand<Product> GoToDetailsCommand { get; }
@@ -35,6 +33,7 @@ namespace DSwiss_Punk.Core.ViewModels
         {
             try
             {
+                await Task.Delay(2000);
                 var products = await _productService.GetProductsAsync(CurrentPage, PageSize);
                 foreach (var product in products)
                 {
