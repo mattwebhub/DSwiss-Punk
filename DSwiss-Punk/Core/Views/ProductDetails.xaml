@@ -9,41 +9,18 @@
     <VerticalStackLayout>
         <ScrollView>
             <Grid RowDefinitions="Auto,Auto,*">
-                <!-- <BoxView -->
-                <!--     BackgroundColor="{StaticResource Primary}" -->
-                <!--     Grid.RowSpan="2" -->
-                <!--     HorizontalOptions="Fill" -->
-                <!--     VerticalOptions="Fill" /> -->
-                <!-- -->
-                <!-- <Border StrokeShape="RoundRectangle 80" -->
-                <!--         Stroke="White" -->
-                <!--         StrokeThickness="6" -->
-                <!--         HeightRequest="160" -->
-                <!--         WidthRequest="160" -->
-                <!--         Margin="0,8,0,0" -->
-                <!--         HorizontalOptions="Center" -->
-                <!--         VerticalOptions="Center"> -->
-                <!--     ~1~ <Image Aspect="AspectFill" @1@ -->
-                <!--     ~1~        HeightRequest="160" @1@ -->
-                <!--     ~1~        HorizontalOptions="Center" @1@ -->
-                <!--     ~1~        VerticalOptions="Center" @1@ -->
-                <!--     ~1~        Source="{Binding Monkey.Image}" @1@ -->
-                <!--     ~1~        WidthRequest="160" /> @1@ -->
-                <!-- </Border> -->
+                <Image Aspect="AspectFill"
+                       HeightRequest="160"
+                       HorizontalOptions="Center"
+                       VerticalOptions="Center"
+                       Source="{Binding Product.Image_url}"
+                       WidthRequest="160" />
                 <VerticalStackLayout Grid.Row="2" Padding="10" Spacing="10">
                     <Label Style="{StaticResource MediumLabel}" Text="{Binding Product.Name}" />
-                    <Label Style="{StaticResource SmallLabel}" Text="{Binding Product.Price}" />
+                    <Label Style="{StaticResource MediumLabel}" Text="{Binding Product.Tagline}" />
                     <Label Style="{StaticResource SmallLabel}" Text="{Binding Product.Description}" />
                 </VerticalStackLayout>
-                <Label 
-                       Grid.Row="1"
-                       TextColor="White"
-                       FontAttributes="Bold"
-                       Text=""
-                       HorizontalOptions="Center"
-                       Margin="0,0,0,8" />
 
-                
 
             </Grid>
         </ScrollView>

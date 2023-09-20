@@ -16,7 +16,9 @@
         <CollectionView
             Grid.ColumnSpan="2"
             ItemsSource="{Binding Products}"
-            SelectionMode="None">
+            SelectionMode="None"
+            RemainingItemsThreshold="1"
+            RemainingItemsThresholdReachedCommand="{Binding LoadMoreProductsCommand}">
             <CollectionView.ItemTemplate>
                 <DataTemplate x:DataType="model:Product">
                     <Grid Padding="10">
@@ -28,15 +30,15 @@
                             </Frame.GestureRecognizers>
 
                             <Grid Padding="0" ColumnDefinitions="125,*">
-                                <!-- <Image Aspect="AspectFill" Source="{Binding Image}"  -->
-                                <!--        WidthRequest="125"  -->
-                                <!--        HeightRequest="125"/>  -->
+                                <Image Aspect="AspectFill" Source="{Binding Image_url}"
+                                       WidthRequest="125"
+                                       HeightRequest="125"/>
                                 <VerticalStackLayout
                                     VerticalOptions="Center"
                                     Grid.Column="1"
                                     Padding="10">
                                     <Label Text="{Binding Name}" />
-                                    <Label Text="{Binding Description}" />
+                                    <Label Text="{Binding Description}" LineBreakMode="TailTruncation" MaxLines="4" />
                                 </VerticalStackLayout>
                             </Grid>
                         </Frame>
@@ -44,20 +46,14 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <Button Text="Get Products"
-                Command="{Binding LoadProductsCommand}"
-                Grid.Row="1"
-                Grid.Column="0"
-                Margin="8" />
 
-
-        <!-- <ActivityIndicator IsVisible="{Binding IsBusy}" -->
-        <!--                    IsRunning="{Binding IsBusy}" -->
-        <!--                    HorizontalOptions="Fill" -->
-        <!--                    VerticalOptions="Center" -->
-        <!--                    Color="{StaticResource Primary}" -->
-        <!--                    Grid.RowSpan="2" -->
-        <!--                    Grid.ColumnSpan="2"/> -->
+        <ActivityIndicator IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           HorizontalOptions="Fill"
+                           VerticalOptions="Center"
+                           Color="{StaticResource Secondary}"
+                           Grid.RowSpan="2"
+                           Grid.ColumnSpan="2"/>
 
     </Grid>
 </ContentPage>
