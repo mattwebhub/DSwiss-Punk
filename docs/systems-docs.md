@@ -81,3 +81,10 @@ Roadmap:
 
 - Setup Application and Test projects - OK
 - Setup Initial MVVMS Architecture - OK
+- Setup Navigation - OK
+- Setup Product Service & Pagination - OK
+- Setup Service Tests - OK
+
+TODO:
+
+- Improve Error State (Global Error Handling)
