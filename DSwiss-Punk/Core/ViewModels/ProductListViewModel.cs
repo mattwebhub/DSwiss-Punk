@@ -15,6 +15,8 @@ namespace DSwiss_Punk.Core.ViewModels
         public IAsyncRelayCommand<Product> GoToDetailsCommand { get; }
         public IAsyncRelayCommand LoadMoreProductsCommand { get; }
         private int CurrentPage { get; set; } = 1;
+        private string _errorMessage;
+        public bool HasErrorMessage => !string.IsNullOrEmpty(ErrorMessage);
         private static int PageSize => 10;
 
         public ProductListViewModel(ProductService productService)
@@ -33,7 +35,6 @@ namespace DSwiss_Punk.Core.ViewModels
         {
             try
             {
-                await Task.Delay(2000);
                 var products = await _productService.GetProductsAsync(CurrentPage, PageSize);
                 foreach (var product in products)
                 {
@@ -42,6 +43,7 @@ namespace DSwiss_Punk.Core.ViewModels
             }
             catch (Exception ex)
             {
+                ErrorMessage = ex.Message;
                 Debug.WriteLine($"Error loading products: {ex.Message}");
             }
             finally
@@ -49,6 +51,19 @@ namespace DSwiss_Punk.Core.ViewModels
                 IsBusy = false;
             }
         }
+
+
+        public string ErrorMessage
+        {
+            get { return _errorMessage; }
+            set
+            {
+                _errorMessage = value;
+                OnPropertyChanged(nameof(ErrorMessage));
+                OnPropertyChanged(nameof(HasErrorMessage));
+            }
+        }
+
 
         private async Task LoadMoreProductsAsync()
         {

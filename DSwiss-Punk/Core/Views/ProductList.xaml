@@ -9,9 +9,28 @@
 
     <Grid
         ColumnDefinitions="*,*"
-        
         RowDefinitions="*,Auto"
         RowSpacing="0">
+        <Grid Grid.Row="0"
+              IsVisible="{Binding HasErrorMessage}"
+              Grid.ColumnSpan="2"
+              VerticalOptions="CenterAndExpand">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Image Grid.Row="0"
+                   Source="error_icon.png"
+                   WidthRequest="50"
+                   HeightRequest="50"
+                   Margin="0,0,0,10" 
+                   HorizontalOptions="Center" />
+            <Label Grid.Row="1"
+                   Text="{Binding ErrorMessage}"
+                   TextColor="Red"
+                   HorizontalOptions="Center"
+                   Style="{StaticResource BaseLabelStyle}" />
+        </Grid>
 
         <CollectionView
             Grid.ColumnSpan="2"
@@ -46,7 +65,7 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-            
+
         <!-- Loading indicator -->
         <Grid IsVisible="{Binding IsBusy}"
               BackgroundColor="Black"
@@ -60,8 +79,8 @@
                                VerticalOptions="Center"
                                Color="White" />
         </Grid>
-    
+
 
     </Grid>
-    
+
 </ContentPage>

@@ -10,6 +10,23 @@ namespace DSwiss_Punk_Tests.Services
     public class ProductServiceTests
     {
         [Fact]
+        public async Task GetProductsAsync_ReturnsError_WhenApiFails()
+        {
+            // Arrange
+            var errorMessage = "An error occurred while retrieving products.";
+            var httpMessageHandler = new MockHttpMessageHandler(errorMessage, HttpStatusCode.InternalServerError);
+            var httpClient = new HttpClient(httpMessageHandler);
+            var productService = new ProductService(httpClient);
+
+            // Act
+            Func<Task> act = async () => await productService.GetProductsAsync(1, 2);
+
+            // Assert
+            await act.Should().ThrowAsync<Exception>()
+                .WithMessage(errorMessage);
+        }
+
+        [Fact]
         public async Task GetProductsAsync_ReturnsExpectedProducts()
         {
             // Arrange
@@ -59,8 +76,14 @@ namespace DSwiss_Punk_Tests.Services
             _statusCode = statusCode;
         }
 
-        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
+            CancellationToken cancellationToken)
         {
+            if (_statusCode == HttpStatusCode.InternalServerError)
+            {
+                throw new HttpRequestException(_response);
+            }
+
             return Task.FromResult(new HttpResponseMessage
             {
                 StatusCode = _statusCode,
