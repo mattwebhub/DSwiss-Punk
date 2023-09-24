@@ -59,14 +59,13 @@ namespace DSwiss_Punk_Tests.Services
             _statusCode = statusCode;
         }
 
-        protected override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request,
-            CancellationToken cancellationToken)
+        protected override Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            return new HttpResponseMessage
+            return Task.FromResult(new HttpResponseMessage
             {
                 StatusCode = _statusCode,
                 Content = new StringContent(_response)
-            };
+            });
         }
     }
 }

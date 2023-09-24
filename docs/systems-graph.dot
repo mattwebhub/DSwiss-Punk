@@ -3,7 +3,7 @@ digraph G {
   node [shape=box, style=filled, color=lightblue];
   
   subgraph cluster_0 {
-    label="App";
+    label="App (Core)";
     Models [label="Models\n(Data & Business Logic)"];
     Views [label="Views\n(User Interface)"];
     ViewModels [label="ViewModels\n(Interface between Model and View)"];
