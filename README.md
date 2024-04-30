@@ -1,6 +1,6 @@
 # DSwiss Punk APP
 
-This is a simple client cross-platform application (Android, iOS and MacOS). It fetches and displays a list of beers from the Punk API.
+This is a simple client cross-platform application (Android, iOS and MacOS) as a form of study. It fetches and displays a list of beers from the Punk API.
 ![iOS Screenshot](https://www.hackerhaze.com/images/punk-ios.png)
 ![MacOS Screenshot](https://www.hackerhaze.com/images/punk-macos.png)
 ![Android Screenshot](https://www.hackerhaze.com/images/punk-android.png)
